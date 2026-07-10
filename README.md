@@ -38,7 +38,7 @@ So "download and run" requires three things together: **the VSIX**, **the repo o
 
 ## Step-by-step
 
-1. **Get the workspace**
+1. **Get access to the workspace, then clone it.** The `Portal-playground` repo is **private** — request access from whoever shared this page (or the repo owner) first. Once granted:
    ```sh
    git clone https://github.com/viksin0/Portal-playground.git
    cd Portal-playground
