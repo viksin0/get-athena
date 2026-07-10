@@ -173,7 +173,7 @@
   <main class="wrap">
     <div class="callout info">
       <strong>Before you download — this is not a standalone extension.</strong>
-      Athena drives a fleet of AI agents that live inside the <strong>Portal Playground repository</strong> and are executed by <strong>GitHub Copilot Chat in Agent Mode</strong>. You need the repo open in VS Code <em>and</em> an active Copilot subscription for anything to run. The workspace repo is <strong>private/internal</strong>, so you'll need access granted before you can clone it. The checklist below walks you through all of it.
+      Athena drives a fleet of AI agents that live inside the <strong>Athena starter workspace</strong> and are executed by <strong>GitHub Copilot Chat in Agent Mode</strong>. You need that workspace open in VS Code <em>and</em> an active Copilot subscription for anything to run. The workspace repo is <strong>private</strong>, so you'll need access granted before you can clone it. The checklist below walks you through all of it.
     </div>
 
     <section id="prereq">
@@ -184,7 +184,7 @@
         <tr><td><strong>VS Code</strong> 1.92 or newer</td><td>The extension targets this engine version.</td></tr>
         <tr><td><strong>GitHub Copilot</strong> + <strong>Copilot Chat</strong> extensions, signed in</td><td>Agents run on your Copilot language models — no separate API key needed.</td></tr>
         <tr><td><strong>Copilot Agent Mode</strong> available</td><td>The <code>@athena</code> agent can only spawn <code>@design</code>, <code>@research</code>, <code>@reflect</code>, and <code>@figma</code> when Chat is in Agent Mode.</td></tr>
-        <tr><td>The <strong>Portal Playground</strong> repository, cloned locally</td><td>The agents, design rules, and the <code>designs/</code> folder all live in the repo. The extension reads them from your open workspace.</td></tr>
+        <tr><td>The <strong>Athena starter workspace</strong>, cloned locally</td><td>The agents, design rules, and the <code>designs/</code> folder all live in this repo. The extension reads them from your open workspace.</td></tr>
       </table>
     </section>
 
@@ -193,13 +193,13 @@
       <ol class="step-list">
         <li>
           <h3>Get access to the workspace</h3>
-          <p>The <strong>Portal Playground</strong> repo is private. First, request access from the person who shared this page (or the repo owner). You'll know you have it when <a href="https://github.com/viksin0/Portal-playground">github.com/viksin0/Portal-playground</a> opens instead of showing a 404.</p>
+          <p>The <strong>Athena starter</strong> repo is private. First, request access from the person who shared this page (or the repo owner). You'll know you have it when <a href="https://github.com/viksin0/athena-starter">github.com/viksin0/athena-starter</a> opens instead of showing a 404.</p>
           <p>Once you have access, clone it and open it in VS Code:</p>
-          <pre><code>git clone https://github.com/viksin0/Portal-playground.git
-cd Portal-playground
+          <pre><code>git clone https://github.com/viksin0/athena-starter.git
+cd athena-starter
 code .</code></pre>
           <p>Then, inside VS Code, install workspace dependencies once:</p>
-          <pre><code>cd Playground && npm install</code></pre>
+          <pre><code>npm install</code></pre>
         </li>
         <li>
           <h3>Download the extension</h3>
@@ -248,7 +248,7 @@ code .</code></pre>
       <h2>Troubleshooting</h2>
       <table>
         <tr><th>Symptom</th><th>Fix</th></tr>
-        <tr><td>Panel is empty / "No designs found"</td><td>You didn't open the Portal Playground repo as your workspace. Open the folder that contains <code>Playground/designs/</code>.</td></tr>
+        <tr><td>Panel is empty / "No designs found"</td><td>You didn't open the <code>athena-starter</code> folder as your workspace. Open the folder that contains <code>designs/</code>.</td></tr>
         <tr><td>Running a stage does nothing</td><td>Copilot Chat is in <em>Ask</em> mode. Switch it to <em>Agent</em> (section 2).</td></tr>
         <tr><td>"Open in Browser" shows <em>Not found</em></td><td>A stale window is holding port 7878. Reload the VS Code window once.</td></tr>
         <tr><td>Model errors / not signed in</td><td>Confirm the GitHub Copilot and Copilot Chat extensions are installed and you're signed in with an active subscription.</td></tr>
@@ -259,7 +259,7 @@ code .</code></pre>
   <footer>
     <div class="wrap">
       Athena is an internal design-tooling preview (v0.1.7). Not published to the VS Code Marketplace.<br/>
-      Source: <a href="https://github.com/viksin0/Portal-playground">github.com/viksin0/Portal-playground</a>
+      Source: <a href="https://github.com/viksin0/athena-starter">github.com/viksin0/athena-starter</a>
     </div>
   </footer>
 </body>

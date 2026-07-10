@@ -14,7 +14,7 @@ Pages is enabled on this repo, serving from the `main` branch root:
 
 Anyone who visits sees the instructions, downloads the VSIX, installs it, and then opens the in-app **Get Started** page.
 
-> **Note:** the Athena workspace repo (`Portal-playground`) is private. Viewers need access granted to clone it (step 1 below).
+> **Note:** the Athena starter workspace (`athena-starter`) is private. Viewers need access granted to clone it (step 1 below).
 
 ---
 
@@ -22,10 +22,10 @@ Anyone who visits sees the instructions, downloads the VSIX, installs it, and th
 
 The VSIX is only the UI shell + local bridge. The actual intelligence is a **fleet of AI agents** (`@athena`, `@design`, `@research`, `@reflect`, `@figma`) that:
 
-- live as Markdown agent files inside the **Portal Playground repository**, and
+- live as Markdown agent files inside the **Athena starter workspace**, and
 - are executed by **GitHub Copilot Chat in Agent Mode**.
 
-So "download and run" requires three things together: **the VSIX**, **the repo open in VS Code**, and **an active GitHub Copilot subscription**.
+So "download and run" requires three things together: **the VSIX**, **the workspace open in VS Code**, and **an active GitHub Copilot subscription**.
 
 ## Prerequisites
 
@@ -34,19 +34,19 @@ So "download and run" requires three things together: **the VSIX**, **the repo o
 | VS Code 1.92+ | Extension engine target. |
 | GitHub Copilot + Copilot Chat extensions (signed in) | Agents run on your Copilot models — no separate API key. |
 | Copilot **Agent Mode** | `@athena` can only spawn the fleet in Agent Mode. |
-| Portal Playground repo cloned locally | Agents, rules, and `designs/` are read from your open workspace. |
+| Athena starter workspace cloned locally | Agents, rules, and `designs/` are read from your open workspace. |
 
 ## Step-by-step
 
-1. **Get access to the workspace, then clone it.** The `Portal-playground` repo is **private** — request access from whoever shared this page (or the repo owner) first. Once granted:
+1. **Get access to the workspace, then clone it.** The `athena-starter` repo is **private** — request access from whoever shared this page (or the repo owner) first. Once granted:
    ```sh
-   git clone https://github.com/viksin0/Portal-playground.git
-   cd Portal-playground
+   git clone https://github.com/viksin0/athena-starter.git
+   cd athena-starter
    code .
    ```
    Then install workspace deps once:
    ```sh
-   cd Playground && npm install
+   npm install
    ```
 
 2. **Download the extension** — [`downloads/athena-0.1.7.vsix`](downloads/athena-0.1.7.vsix).
@@ -74,7 +74,7 @@ Full docs: the built-in **📖 Get-Started Docs** (book icon in the panel), mirr
 
 | Symptom | Fix |
 | --- | --- |
-| Empty panel / "No designs found" | Open the folder containing `Playground/designs/` as your workspace. |
+| Empty panel / "No designs found" | Open the `athena-starter` folder (it contains `designs/`) as your workspace. |
 | Running a stage does nothing | Copilot Chat is in *Ask* mode — switch to *Agent*. |
 | "Open in Browser" → *Not found* | A stale window holds port 7878; reload the VS Code window once. |
 | Model errors / not signed in | Confirm Copilot + Copilot Chat are installed and signed in. |
