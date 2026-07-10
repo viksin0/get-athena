@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Get Athena — install & run the design pipeline extension</title>
+  <meta name="description" content="Download and install the Athena VS Code extension, then run the AI design fleet." />
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --bg-card: #ffffff;
+      --fg: #1b1a19;
+      --muted: #5b5a58;
+      --accent: #2563eb;
+      --accent-soft: #e8effe;
+      --border: #e3e1de;
+      --ok: #107c10;
+      --warn: #db7500;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #17181c;
+        --bg-card: #1f2127;
+        --fg: #ecedef;
+        --muted: #a6a8ad;
+        --accent: #6ea8fe;
+        --accent-soft: #22304a;
+        --border: #33353c;
+        --shadow: 0 1px 3px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    code, kbd { font-family: var(--font-mono); font-size: .92em; }
+    code {
+      background: var(--accent-soft);
+      color: var(--fg);
+      padding: 1px 6px;
+      border-radius: 5px;
+    }
+    kbd {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: .82em;
+    }
+    a { color: var(--accent); }
+    /* Hero */
+    header.hero {
+      padding: 72px 0 56px;
+      text-align: center;
+      background: radial-gradient(1200px 400px at 50% -80px, var(--accent-soft), transparent 70%);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    h1 { font-size: clamp(32px, 6vw, 48px); margin: 0 0 12px; letter-spacing: -.02em; }
+    .tagline { font-size: clamp(16px, 3vw, 20px); color: var(--muted); max-width: 620px; margin: 0 auto 32px; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 16px; font-weight: 600;
+      padding: 12px 26px; border-radius: var(--radius-sm);
+      text-decoration: none; cursor: pointer; border: 1px solid transparent;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: var(--shadow); }
+    .btn-ghost { background: var(--bg-card); color: var(--fg); border-color: var(--border); }
+    .btn small { font-weight: 400; opacity: .8; font-size: 12px; }
+    /* Sections */
+    section { padding: 40px 0; border-top: 1px solid var(--border); }
+    section:first-of-type { border-top: none; }
+    h2 { font-size: 26px; margin: 0 0 8px; letter-spacing: -.01em; }
+    h2 .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--accent); color: #fff; font-size: 15px; margin-right: 10px;
+      vertical-align: middle;
+    }
+    h3 { font-size: 17px; margin: 24px 0 6px; }
+    p { margin: 8px 0; }
+    ul, ol { padding-left: 22px; }
+    li { margin: 6px 0; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      margin: 16px 0;
+    }
+    .callout {
+      border-left: 4px solid var(--warn);
+      background: color-mix(in srgb, var(--warn) 8%, var(--bg-card));
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      margin: 18px 0;
+    }
+    .callout.info { border-left-color: var(--accent); background: var(--accent-soft); }
+    .callout strong { display: block; margin-bottom: 4px; }
+    pre {
+      background: #0f1117;
+      color: #e6edf3;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    pre code { background: none; color: inherit; padding: 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 16px 0; }
+    .feature { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+    .feature h4 { margin: 0 0 4px; font-size: 15px; }
+    .feature p { margin: 0; font-size: 14px; color: var(--muted); }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
+    th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; }
+    footer { padding: 40px 0 64px; text-align: center; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+    .step-list { counter-reset: step; list-style: none; padding: 0; }
+    .step-list > li { position: relative; padding-left: 42px; margin: 20px 0; }
+    .step-list > li::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 0; top: 0;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <span class="badge">VS Code Extension · v0.1.7 (preview)</span>
+      <h1>Athena</h1>
+      <p class="tagline">A browser-style UI for the Athena AI design pipeline. Turn a sentence into a reviewable Azure-portal blade — research, ideate, generate, validate — all inside VS Code.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="downloads/athena-0.1.7.vsix" download>
+          ↓ Download extension <small>athena-0.1.7.vsix · 392 KB</small>
+        </a>
+        <a class="btn btn-ghost" href="#install">Read the install guide</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="callout info">
+      <strong>Before you download — this is not a standalone extension.</strong>
+      Athena drives a fleet of AI agents that live inside the <strong>Portal Playground repository</strong> and are executed by <strong>GitHub Copilot Chat in Agent Mode</strong>. You need the repo open in VS Code <em>and</em> an active Copilot subscription for anything to run. The workspace repo is <strong>private/internal</strong>, so you'll need access granted before you can clone it. The checklist below walks you through all of it.
+    </div>
+
+    <section id="prereq">
+      <h2>What you need first</h2>
+      <p>Confirm all four before installing — the extension will look broken without them.</p>
+      <table>
+        <tr><th>Requirement</th><th>Why</th></tr>
+        <tr><td><strong>VS Code</strong> 1.92 or newer</td><td>The extension targets this engine version.</td></tr>
+        <tr><td><strong>GitHub Copilot</strong> + <strong>Copilot Chat</strong> extensions, signed in</td><td>Agents run on your Copilot language models — no separate API key needed.</td></tr>
+        <tr><td><strong>Copilot Agent Mode</strong> available</td><td>The <code>@athena</code> agent can only spawn <code>@design</code>, <code>@research</code>, <code>@reflect</code>, and <code>@figma</code> when Chat is in Agent Mode.</td></tr>
+        <tr><td>The <strong>Portal Playground</strong> repository, cloned locally</td><td>The agents, design rules, and the <code>designs/</code> folder all live in the repo. The extension reads them from your open workspace.</td></tr>
+      </table>
+    </section>
+
+    <section id="install">
+      <h2><span class="num">1</span>Install &amp; run</h2>
+      <ol class="step-list">
+        <li>
+          <h3>Get the workspace</h3>
+          <p>Clone the repository and open it in VS Code:</p>
+          <pre><code>git clone https://github.com/viksin0/Portal-playground.git
+cd Portal-playground
+code .</code></pre>
+          <p>Then, inside VS Code, install workspace dependencies once:</p>
+          <pre><code>cd Playground && npm install</code></pre>
+        </li>
+        <li>
+          <h3>Download the extension</h3>
+          <p>Grab <a href="downloads/athena-0.1.7.vsix" download><code>athena-0.1.7.vsix</code></a> (the button at the top of this page).</p>
+        </li>
+        <li>
+          <h3>Install the VSIX</h3>
+          <p>Two equivalent ways:</p>
+          <ul>
+            <li><strong>UI:</strong> Extensions view (<kbd>⇧⌘X</kbd> / <kbd>Ctrl+Shift+X</kbd>) → <code>···</code> menu → <em>Install from VSIX…</em> → pick the downloaded file.</li>
+            <li><strong>Terminal:</strong> <code>code --install-extension athena-0.1.7.vsix</code></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Reload the window</h3>
+          <p><kbd>⌘⇧P</kbd> / <kbd>Ctrl+Shift+P</kbd> → <em>Developer: Reload Window</em>. The Athena icon appears in the Activity Bar and a local bridge starts on <code>localhost:7878</code>.</p>
+        </li>
+        <li>
+          <h3>Open Athena</h3>
+          <p>Click the Athena icon in the Activity Bar, then <strong>Open in VS Code Panel</strong> (or <strong>Open in Browser</strong>). The <strong>Get Started</strong> page loads automatically the first time.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="agent-mode">
+      <h2><span class="num">2</span>Switch Copilot Chat to Agent Mode</h2>
+      <div class="callout">
+        <strong>This is the step people forget.</strong>
+        Open Copilot Chat and change the mode picker at the top from <em>Ask</em> to <em>Agent</em>. If you run a stage while Chat is in <em>Ask</em> mode, <code>@athena</code> cannot delegate to the rest of the fleet and the run silently does nothing.
+      </div>
+    </section>
+
+    <section id="run">
+      <h2><span class="num">3</span>Run the agents</h2>
+      <p>From the Athena panel you can drive the fleet three ways:</p>
+      <div class="grid">
+        <div class="feature"><h4>Create a design</h4><p>Click <strong>＋ Create new design</strong>, describe the blade in a sentence, and pick an outcome.</p></div>
+        <div class="feature"><h4>Run a stage</h4><p>Use the stage stepper (Research → Ideation → Generation → Validation → Learning) to fire one stage.</p></div>
+        <div class="feature"><h4>Run everything</h4><p>Hit <strong>▶ Run Auto</strong> to chain all five stages back-to-back.</p></div>
+      </div>
+      <p>You can also type free-form chat or a slash command (e.g. <code>/research</code>, <code>/generate</code>) directly in the Athena chat. Responses stream back into the panel.</p>
+      <p>Full documentation lives in the built-in <strong>📖 Get-Started Docs</strong> (the book icon in the panel) — the same content as the <code>Playground/Get started/</code> handbook.</p>
+    </section>
+
+    <section id="troubleshoot">
+      <h2>Troubleshooting</h2>
+      <table>
+        <tr><th>Symptom</th><th>Fix</th></tr>
+        <tr><td>Panel is empty / "No designs found"</td><td>You didn't open the Portal Playground repo as your workspace. Open the folder that contains <code>Playground/designs/</code>.</td></tr>
+        <tr><td>Running a stage does nothing</td><td>Copilot Chat is in <em>Ask</em> mode. Switch it to <em>Agent</em> (section 2).</td></tr>
+        <tr><td>"Open in Browser" shows <em>Not found</em></td><td>A stale window is holding port 7878. Reload the VS Code window once.</td></tr>
+        <tr><td>Model errors / not signed in</td><td>Confirm the GitHub Copilot and Copilot Chat extensions are installed and you're signed in with an active subscription.</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Athena is an internal design-tooling preview (v0.1.7). Not published to the VS Code Marketplace.<br/>
+      Source: <a href="https://github.com/viksin0/Portal-playground">github.com/viksin0/Portal-playground</a>
+    </div>
+  </footer>
+</body>
+</html>
