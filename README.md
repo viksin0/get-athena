@@ -3,7 +3,7 @@
 This is a self-contained, GitHub Pages–ready site for installing and running the **Athena** VS Code extension. It is intentionally a **separate public repo** so the main **Portal Playground** workspace can stay private.
 
 - **`index.html`** — the hosted landing page (download button + step-by-step install guide).
-- **`downloads/athena-0.1.8.vsix`** — the packaged extension file.
+- **`downloads/athena-0.2.0.vsix`** — the packaged extension file.
 - **`README.md`** — this guide (also renders on GitHub).
 
 ## Hosting on GitHub Pages
@@ -46,14 +46,14 @@ So "download and run" requires three things together: **the VSIX**, **the worksp
    ```
    Then install workspace deps once:
    ```sh
-   npm install
+   npm ci
    ```
 
-2. **Download the extension** — [`downloads/athena-0.1.8.vsix`](downloads/athena-0.1.8.vsix).
+2. **Download the extension** — [`downloads/athena-0.2.0.vsix`](downloads/athena-0.2.0.vsix).
 
 3. **Install the VSIX**
    - UI: Extensions view → `···` → **Install from VSIX…**, or
-   - Terminal: `code --install-extension athena-0.1.8.vsix`
+   - Terminal: `code --install-extension athena-0.2.0.vsix`
 
 4. **Reload the window** — Command Palette → *Developer: Reload Window*. The Athena icon appears in the Activity Bar; the bridge starts on `localhost:7878`.
 
@@ -68,7 +68,7 @@ So "download and run" requires three things together: **the VSIX**, **the worksp
 - **Run everything** — `▶ Run Auto` chains all five stages.
 - **Chat / slash commands** — type `/research`, `/generate`, etc. directly in the Athena chat.
 
-Full docs: the built-in **📖 Get-Started Docs** (book icon in the panel), mirroring `Playground/Get started/`.
+Full docs: the built-in **📖 Get-Started Docs** (book icon in the panel), mirroring `KB/docs/get-started/`.
 
 ## Troubleshooting
 
@@ -81,18 +81,11 @@ Full docs: the built-in **📖 Get-Started Docs** (book icon in the panel), mirr
 
 ## Rebuilding / updating the VSIX
 
-When the extension source changes (in the private `Portal-playground` repo), repackage and copy the new file into this public repo:
+The private `Portal-playground` repo owns the release workflow. With clean sibling checkouts of `athena-starter` and `get-athena-site` beside it, run:
 
 ```sh
-# in the private Portal-playground repo
 cd athena-extension
-npm run build
-npx --yes @vscode/vsce package --allow-missing-repository \
-  --baseContentUrl https://example.invalid/athena \
-  --baseImagesUrl https://example.invalid/athena
-
-# copy the fresh VSIX into this public repo, then commit + push
-cp athena-<version>.vsix /path/to/get-athena/downloads/
+npm run release:distribution
 ```
 
-Then bump the version references in `index.html` and `README.md` and push. GitHub Pages redeploys automatically.
+This audits and packages the VSIX, validates its payload, synchronizes the canonical starter workspace, archives the previous public VSIX, publishes the new artifact and provenance, stamps version references, and verifies both sibling repositories. Review and commit each repository separately; GitHub Pages redeploys when this repository is pushed.
