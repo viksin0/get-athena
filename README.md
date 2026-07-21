@@ -3,7 +3,7 @@
 This is a self-contained, GitHub Pages–ready site for installing and running the **Athena** VS Code extension. It is intentionally a **separate public repo** so the main **Portal Playground** workspace can stay private.
 
 - **`index.html`** — the hosted landing page (download button + step-by-step install guide).
-- **`downloads/athena-0.2.1.vsix`** — the packaged extension file.
+- **`downloads/athena-0.2.2.vsix`** — the packaged extension file (version is stamped by the release script).
 - **`README.md`** — this guide (also renders on GitHub).
 
 ## Hosting on GitHub Pages
@@ -34,32 +34,37 @@ So "download and run" requires three things together: **the VSIX**, **the worksp
 | VS Code 1.92+ | Extension engine target. |
 | GitHub Copilot + Copilot Chat extensions (signed in) | Agents run on your Copilot models — no separate API key. |
 | Copilot **Agent Mode** | `@athena` can only spawn the fleet in Agent Mode. |
-| Athena starter workspace cloned locally | Agents, rules, and `designs/` are read from your open workspace. |
+| Access to the private Athena starter repo | Either setup path clones the same agents, rules, and `designs/` workspace. |
 
 ## Step-by-step
 
-1. **Get access to the workspace, then clone it.** The `athena-starter` repo is **private** — request access from whoever shared this page (or the repo owner) first. Once granted:
-   ```sh
-   git clone https://github.com/viksin0/athena-starter.git
-   cd athena-starter
-   code .
-   ```
-   Then install workspace deps once:
-   ```sh
-   npm ci
-   ```
+1. **Download the extension** — [`downloads/athena-0.2.2.vsix`](downloads/athena-0.2.2.vsix).
 
-2. **Download the extension** — [`downloads/athena-0.2.1.vsix`](downloads/athena-0.2.1.vsix).
-
-3. **Install the VSIX**
+2. **Install the VSIX**
    - UI: Extensions view → `···` → **Install from VSIX…**, or
-   - Terminal: `code --install-extension athena-0.2.1.vsix`
+   - Terminal: `code --install-extension athena-0.2.2.vsix`
 
-4. **Reload the window** — Command Palette → *Developer: Reload Window*. The Athena icon appears in the Activity Bar; the bridge starts on `localhost:7878`.
+3. **Reload the window** — Command Palette → *Developer: Reload Window*. The Athena icon appears in the Activity Bar; the bridge starts on `localhost:7878`.
+
+4. **Get access to the private starter repo**, then choose exactly one setup path:
+   - **Guided (recommended):** on the hosted page choose **Guided setup** → **Continue setup in VS Code**, or run **Athena: Set Up or Update Workspace**. Select a parent folder when prompted. Athena creates `athena-starter/`, clones the repo, runs `npm ci`, and opens it.
+   - **Terminal:** run the equivalent commands yourself:
+     ```sh
+     git clone https://github.com/viksin0/athena-starter.git
+     cd athena-starter
+     npm ci
+     code .
+     ```
 
 5. **Open Athena** — click the Athena Activity Bar icon → **Open in VS Code Panel** (or **Open in Browser**). The **Get Started** page loads automatically on first run.
 
 6. **Switch Copilot Chat to Agent Mode** — in Copilot Chat, change the mode picker from *Ask* to *Agent*. (Most common mistake: stages do nothing in *Ask* mode.)
+
+Do not run both workspace paths. The extension reports the real local state:
+
+- **Set Up Athena Workspace** — no Athena workspace is open.
+- **Finish Workspace Setup** — the repo exists but `npm ci` still needs to run.
+- **Check for Workspace Updates** — setup is complete; updates use a safe `git pull --ff-only` flow.
 
 ## Running the agents
 

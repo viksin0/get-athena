@@ -153,17 +153,58 @@
       display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: 14px;
     }
+    .path-switch {
+      display: inline-grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+      padding: 4px;
+      margin: 14px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+    }
+    .path-switch button {
+      min-height: 38px;
+      padding: 7px 14px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      font: 600 14px/1.2 var(--font-sans);
+      cursor: pointer;
+    }
+    .path-switch button[aria-selected="true"] {
+      background: var(--bg-card);
+      color: var(--fg);
+      box-shadow: var(--shadow);
+    }
+    .path-panel {
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+    }
+    .path-panel h4 { margin: 0 0 8px; font-size: 16px; }
+    .path-panel[hidden] { display: none; }
+    .path-status { min-height: 22px; margin-top: 10px; color: var(--muted); font-size: 13px; }
+    .state-list { display: grid; gap: 8px; padding: 0; list-style: none; }
+    .state-list li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 10px; margin: 0; }
+    .state-list strong { color: var(--accent); }
+    @media (max-width: 620px) {
+      .path-switch { display: grid; width: 100%; }
+      .state-list li { grid-template-columns: 1fr; gap: 0; }
+    }
   </style>
 </head>
 <body>
   <header class="hero">
     <div class="wrap">
-      <span class="badge">VS Code Extension · v0.2.1 (preview)</span>
+      <span class="badge">VS Code Extension · v0.2.2 (preview)</span>
       <h1>Athena</h1>
       <p class="tagline">A browser-style UI for the Athena AI design pipeline. Turn a sentence into a reviewable Azure-portal blade — research, ideate, generate, validate — all inside VS Code.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="downloads/athena-0.2.1.vsix" download>
-          ↓ Download extension <small>athena-0.2.1.vsix · 3372 KB</small>
+        <a class="btn btn-primary" href="downloads/athena-0.2.2.vsix" download>
+          ↓ Download extension <small>athena-0.2.2.vsix · 3374 KB</small>
         </a>
         <a class="btn btn-ghost" href="#install">Read the install guide</a>
       </div>
@@ -184,7 +225,7 @@
         <tr><td><strong>VS Code</strong> 1.92 or newer</td><td>The extension targets this engine version.</td></tr>
         <tr><td><strong>GitHub Copilot</strong> + <strong>Copilot Chat</strong> extensions, signed in</td><td>Agents run on your Copilot language models — no separate API key needed.</td></tr>
         <tr><td><strong>Copilot Agent Mode</strong> available</td><td>The <code>@athena</code> agent can only spawn <code>@design</code>, <code>@research</code>, <code>@reflect</code>, and <code>@figma</code> when Chat is in Agent Mode.</td></tr>
-        <tr><td>The <strong>Athena starter workspace</strong>, cloned locally</td><td>The agents, design rules, and the <code>designs/</code> folder all live in this repo. The extension reads them from your open workspace.</td></tr>
+        <tr><td>Access to the private <strong>Athena starter</strong> repo</td><td>Either setup path clones the same agents, rules, and <code>designs/</code> workspace. Confirm the repo link opens instead of returning 404.</td></tr>
       </table>
     </section>
 
@@ -192,31 +233,47 @@
       <h2><span class="num">1</span>Install &amp; run</h2>
       <ol class="step-list">
         <li>
-          <h3>Get access to the workspace</h3>
-          <p>The <strong>Athena starter</strong> repo is private. First, request access from the person who shared this page (or the repo owner). You'll know you have it when <a href="https://github.com/viksin0/athena-starter">github.com/viksin0/athena-starter</a> opens instead of showing a 404.</p>
-          <p>Once you have access, clone it and open it in VS Code:</p>
-          <pre><code>git clone https://github.com/viksin0/athena-starter.git
-cd athena-starter
-code .</code></pre>
-          <p>Then, inside VS Code, install workspace dependencies once:</p>
-          <pre><code>npm ci</code></pre>
-          <p style="opacity:.8"><strong>Prefer one click?</strong> After you've installed the extension (next steps), open the Athena sidebar and hit <strong>🧩 Set Up / Update Workspace</strong> — it clones this for you (you still need repo access). The status bar shows your <strong>Athena KB</strong> version and nudges you when an update is available; <strong>Update Knowledge Base</strong> pulls the latest.</p>
-        </li>
-        <li>
           <h3>Download the extension</h3>
-          <p>Grab <a href="downloads/athena-0.2.1.vsix" download><code>athena-0.2.1.vsix</code></a> (the button at the top of this page).</p>
+          <p>Grab <a href="downloads/athena-0.2.2.vsix" download><code>athena-0.2.2.vsix</code></a> (the button at the top of this page).</p>
         </li>
         <li>
           <h3>Install the VSIX</h3>
           <p>Two equivalent ways:</p>
           <ul>
             <li><strong>UI:</strong> Extensions view (<kbd>⇧⌘X</kbd> / <kbd>Ctrl+Shift+X</kbd>) → <code>···</code> menu → <em>Install from VSIX…</em> → pick the downloaded file.</li>
-            <li><strong>Terminal:</strong> <code>code --install-extension athena-0.2.1.vsix</code></li>
+            <li><strong>Terminal:</strong> <code>code --install-extension athena-0.2.2.vsix</code></li>
           </ul>
         </li>
         <li>
           <h3>Reload the window</h3>
           <p><kbd>⌘⇧P</kbd> / <kbd>Ctrl+Shift+P</kbd> → <em>Developer: Reload Window</em>. The Athena icon appears in the Activity Bar and a local bridge starts on <code>localhost:7878</code>.</p>
+        </li>
+        <li>
+          <h3>Set up the starter workspace</h3>
+          <p>First confirm you can open <a href="https://github.com/viksin0/athena-starter">github.com/viksin0/athena-starter</a>. Then choose <strong>one</strong> setup path. Both clone the same repository, run <code>npm ci</code>, and open the same workspace.</p>
+          <div class="path-switch" role="tablist" aria-label="Workspace setup method">
+            <button id="path-guided" type="button" role="tab" aria-controls="guided-panel" aria-selected="true" data-setup-path="guided">Guided setup</button>
+            <button id="path-terminal" type="button" role="tab" aria-controls="terminal-panel" aria-selected="false" data-setup-path="terminal">Terminal setup</button>
+          </div>
+          <div id="guided-panel" class="path-panel" role="tabpanel" aria-labelledby="path-guided">
+            <h4>Let the extension do the setup</h4>
+            <p>Open Athena's state-aware workspace action. Choose a <strong>parent folder</strong>; VS Code's confirmation button says <strong>Create athena-starter here</strong> because Athena creates a new child folder there.</p>
+            <p><a id="guided-setup-link" class="btn btn-primary" href="vscode://playground.athena/setup">Continue setup in VS Code</a></p>
+            <div id="guided-status" class="path-status" aria-live="polite">After setup, VS Code opens the completed <code>athena-starter</code> workspace.</div>
+            <ul class="state-list">
+              <li><strong>Not set up</strong><span>The launcher shows <em>Set Up Athena Workspace</em>.</span></li>
+              <li><strong>Clone exists</strong><span>If dependencies are missing, it shows <em>Finish Workspace Setup</em>.</span></li>
+              <li><strong>Ready</strong><span>It shows <em>Check for Workspace Updates</em>.</span></li>
+            </ul>
+          </div>
+          <div id="terminal-panel" class="path-panel" role="tabpanel" aria-labelledby="path-terminal" hidden>
+            <h4>Run the equivalent commands yourself</h4>
+            <pre><code>git clone https://github.com/viksin0/athena-starter.git
+cd athena-starter
+npm ci
+code .</code></pre>
+            <p>When this folder opens, the Athena launcher recognizes the completed workspace and changes to <strong>Check for Workspace Updates</strong>. Do not run Guided setup as well.</p>
+          </div>
         </li>
         <li>
           <h3>Open Athena</h3>
@@ -247,6 +304,10 @@ code .</code></pre>
         The starter workspace ships with a finished <strong>Networking hub</strong> design (<code>designs/noc-hub/</code>) — research, requirements, generated pages, and a validation report. Open it to see what a completed design looks like end-to-end before creating your own.
       </div>
       <p>Full documentation lives in the built-in <strong>📖 Get-Started Docs</strong> (the book icon in the panel) — the same content as the <code>KB/docs/get-started/</code> handbook.</p>
+      <div class="callout info">
+        <strong>Returning to an existing workspace?</strong>
+        Open <code>athena-starter</code> and use <strong>Check for Workspace Updates</strong> in the Athena sidebar. It checks the upstream knowledge base and offers a fast-forward-only update, so it never force-resets local work. Terminal users can use <code>git pull --ff-only</code> for the equivalent operation.
+      </div>
     </section>
 
     <section id="troubleshoot">
@@ -254,6 +315,8 @@ code .</code></pre>
       <table>
         <tr><th>Symptom</th><th>Fix</th></tr>
         <tr><td>Panel is empty / "No designs found"</td><td>You didn't open the <code>athena-starter</code> folder as your workspace. Open the folder that contains <code>designs/</code>.</td></tr>
+        <tr><td>Folder picker says "Create athena-starter here"</td><td>Select the parent location. Athena creates a new <code>athena-starter/</code> folder inside it; it does not overwrite the selected folder.</td></tr>
+        <tr><td>Launcher says "Finish Workspace Setup"</td><td>The repo is present but dependencies are missing. Click it to run the same <code>npm ci</code> used by Terminal setup.</td></tr>
         <tr><td>Running a stage does nothing</td><td>Copilot Chat is in <em>Ask</em> mode. Switch it to <em>Agent</em> (section 2).</td></tr>
         <tr><td>"Open in Browser" shows <em>Not found</em></td><td>A stale window is holding port 7878. Reload the VS Code window once.</td></tr>
         <tr><td>Model errors / not signed in</td><td>Confirm the GitHub Copilot and Copilot Chat extensions are installed and you're signed in with an active subscription.</td></tr>
@@ -263,9 +326,38 @@ code .</code></pre>
 
   <footer>
     <div class="wrap">
-      Athena is an internal design-tooling preview (v0.2.1). Not published to the VS Code Marketplace.<br/>
+      Athena is an internal design-tooling preview (v0.2.2). Not published to the VS Code Marketplace.<br/>
       Source: <a href="https://github.com/viksin0/athena-starter">github.com/viksin0/athena-starter</a>
     </div>
   </footer>
+  <script>
+    const pathButtons = Array.from(document.querySelectorAll('[data-setup-path]'));
+    const guidedPanel = document.getElementById('guided-panel');
+    const terminalPanel = document.getElementById('terminal-panel');
+    const setupPathKey = 'athena.setupPath.v1';
+
+    function selectSetupPath(path) {
+      const guided = path !== 'terminal';
+      guidedPanel.hidden = !guided;
+      terminalPanel.hidden = guided;
+      pathButtons.forEach((button) => {
+        const selected = button.dataset.setupPath === (guided ? 'guided' : 'terminal');
+        button.setAttribute('aria-selected', String(selected));
+        button.tabIndex = selected ? 0 : -1;
+      });
+      localStorage.setItem(setupPathKey, guided ? 'guided' : 'terminal');
+    }
+
+    pathButtons.forEach((button) => {
+      button.addEventListener('click', () => selectSetupPath(button.dataset.setupPath));
+    });
+    selectSetupPath(localStorage.getItem(setupPathKey) || 'guided');
+
+    const guidedLink = document.getElementById('guided-setup-link');
+    guidedLink.addEventListener('click', () => {
+      guidedLink.textContent = 'Reopen setup in VS Code';
+      document.getElementById('guided-status').textContent = 'VS Code opened. The Athena sidebar now shows the actual setup state and next action.';
+    });
+  </script>
 </body>
 </html>
