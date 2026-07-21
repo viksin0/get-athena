@@ -9,7 +9,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this form only for Athena repository access. This issue is public, so do not include email addresses, customer information, credentials, or other confidential data.
+        Microsoft EMU accounts cannot create issues in repositories outside the enterprise. Submit this form while signed into a personal GitHub account, then enter the Microsoft EMU username that should receive access below.
+
+        This issue is public. Do not include email addresses, customer information, credentials, or other confidential data.
   - type: input
     id: github-username
     attributes:
@@ -31,7 +33,7 @@ body:
     attributes:
       label: Acknowledgements
       options:
-        - label: I am requesting access with my Microsoft-managed GitHub identity.
+        - label: The Microsoft EMU username above is the managed identity that should receive access.
           required: true
         - label: I will not redistribute repository content or release artifacts outside Microsoft.
           required: true

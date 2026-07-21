@@ -3,7 +3,7 @@
 This public gateway explains how Microsoft employees can request access to the private **Athena** VS Code extension and starter workspace. Athena source, release artifacts, and workspace content remain in Microsoft EMU repositories.
 
 - **`index.html`** — the hosted landing page (download button + step-by-step install guide).
-- **Access request** — [submit the public issue form](https://github.com/viksin0/get-athena/issues/new?template=access-request.yml) using your Microsoft EMU GitHub username.
+- **Access request** — [submit the public issue form](https://github.com/viksin0/get-athena/issues/new?template=access-request.yml) while signed into a personal GitHub account, then provide your Microsoft EMU username.
 - **`README.md`** — this guide (also renders on GitHub).
 
 ## Hosting on GitHub Pages
@@ -14,7 +14,7 @@ Pages is enabled on this repo, serving from the `main` branch root:
 
 Anyone can read the request instructions. Only approved Microsoft EMU identities can open the private repositories or download the current VSIX.
 
-> **Request access:** submit the [Athena access request](https://github.com/viksin0/get-athena/issues/new?template=access-request.yml). The issue is public, so provide only your managed GitHub username and a non-confidential use case.
+> **Request access:** Microsoft EMU accounts cannot create public issues outside the enterprise. Sign into a personal GitHub account to submit the [Athena access request](https://github.com/viksin0/get-athena/issues/new?template=access-request.yml), then provide only your managed GitHub username and a non-confidential use case.
 
 ---
 
@@ -38,7 +38,7 @@ So "download and run" requires three things together: **the VSIX**, **the worksp
 
 ## Step-by-step
 
-1. **Request access** — submit the [Athena access request](https://github.com/viksin0/get-athena/issues/new?template=access-request.yml) with your Microsoft EMU GitHub username.
+1. **Request access** — sign into a personal GitHub account and submit the [Athena access request](https://github.com/viksin0/get-athena/issues/new?template=access-request.yml) with the Microsoft EMU username that should receive access.
 
 2. **After approval, download the extension** from the [private Athena release repository](https://github.com/viksin_microsoft/get-athena/releases/latest), then install the VSIX:
    - UI: Extensions view → `···` → **Install from VSIX…**, or
