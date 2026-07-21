@@ -199,14 +199,14 @@
 <body>
   <header class="hero">
     <div class="wrap">
-      <span class="badge">VS Code Extension · v0.2.2 (preview)</span>
+      <span class="badge">Microsoft employee preview</span>
       <h1>Athena</h1>
       <p class="tagline">A browser-style UI for the Athena AI design pipeline. Turn a sentence into a reviewable Azure-portal blade — research, ideate, generate, validate — all inside VS Code.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="downloads/athena-0.2.2.vsix" download>
-          ↓ Download extension <small>athena-0.2.2.vsix · 3374 KB</small>
+        <a class="btn btn-primary" href="https://github.com/viksin0/get-athena/issues/new?template=access-request.yml">
+          Request access <small>Microsoft EMU account required</small>
         </a>
-        <a class="btn btn-ghost" href="#install">Read the install guide</a>
+        <a class="btn btn-ghost" href="https://github.com/viksin_microsoft/get-athena">I already have access</a>
       </div>
     </div>
   </header>
@@ -214,7 +214,7 @@
   <main class="wrap">
     <div class="callout info">
       <strong>Before you download — this is not a standalone extension.</strong>
-      Athena drives a fleet of AI agents that live inside the <strong>Athena starter workspace</strong> and are executed by <strong>GitHub Copilot Chat in Agent Mode</strong>. You need that workspace open in VS Code <em>and</em> an active Copilot subscription for anything to run. The workspace repo is <strong>private</strong>, so you'll need access granted before you can clone it. The checklist below walks you through all of it.
+      Athena drives a fleet of AI agents that live inside the <strong>Athena starter workspace</strong> and are executed by <strong>GitHub Copilot Chat in Agent Mode</strong>. The release and workspace repositories are private. Submit an access request with your Microsoft EMU GitHub username before installing.
     </div>
 
     <section id="prereq">
@@ -225,23 +225,24 @@
         <tr><td><strong>VS Code</strong> 1.92 or newer</td><td>The extension targets this engine version.</td></tr>
         <tr><td><strong>GitHub Copilot</strong> + <strong>Copilot Chat</strong> extensions, signed in</td><td>Agents run on your Copilot language models — no separate API key needed.</td></tr>
         <tr><td><strong>Copilot Agent Mode</strong> available</td><td>The <code>@athena</code> agent can only spawn <code>@design</code>, <code>@research</code>, <code>@reflect</code>, and <code>@figma</code> when Chat is in Agent Mode.</td></tr>
-        <tr><td>Access to the private <strong>Athena starter</strong> repo</td><td>Either setup path clones the same agents, rules, and <code>designs/</code> workspace. Confirm the repo link opens instead of returning 404.</td></tr>
+        <tr><td>Approved access to both private Athena repositories</td><td>GitHub returns 404 until your Microsoft EMU identity has been granted access and authenticated with SSO.</td></tr>
       </table>
     </section>
 
     <section id="install">
-      <h2><span class="num">1</span>Install &amp; run</h2>
+      <h2><span class="num">1</span>Request access, install &amp; run</h2>
       <ol class="step-list">
         <li>
-          <h3>Download the extension</h3>
-          <p>Grab <a href="downloads/athena-0.2.2.vsix" download><code>athena-0.2.2.vsix</code></a> (the button at the top of this page).</p>
+          <h3>Request access</h3>
+          <p>Submit the <a href="https://github.com/viksin0/get-athena/issues/new?template=access-request.yml">Athena access request</a> using your Microsoft EMU GitHub username. The issue is public, so do not include confidential information.</p>
         </li>
         <li>
-          <h3>Install the VSIX</h3>
+          <h3>Download and install the VSIX after approval</h3>
+          <p>Download the current package from the <a href="https://github.com/viksin_microsoft/get-athena/releases/latest">private Athena release</a>.</p>
           <p>Two equivalent ways:</p>
           <ul>
             <li><strong>UI:</strong> Extensions view (<kbd>⇧⌘X</kbd> / <kbd>Ctrl+Shift+X</kbd>) → <code>···</code> menu → <em>Install from VSIX…</em> → pick the downloaded file.</li>
-            <li><strong>Terminal:</strong> <code>code --install-extension athena-0.2.2.vsix</code></li>
+            <li><strong>Terminal:</strong> <code>code --install-extension athena-*.vsix</code></li>
           </ul>
         </li>
         <li>
@@ -250,7 +251,7 @@
         </li>
         <li>
           <h3>Set up the starter workspace</h3>
-          <p>First confirm you can open <a href="https://github.com/viksin0/athena-starter">github.com/viksin0/athena-starter</a>. Then choose <strong>one</strong> setup path. Both clone the same repository, run <code>npm ci</code>, and open the same workspace.</p>
+          <p>First confirm you can open <a href="https://github.com/viksin_microsoft/athena-starter">github.com/viksin_microsoft/athena-starter</a>. Then choose <strong>one</strong> setup path. Both clone the same repository, run <code>npm ci</code>, and open the same workspace.</p>
           <div class="path-switch" role="tablist" aria-label="Workspace setup method">
             <button id="path-guided" type="button" role="tab" aria-controls="guided-panel" aria-selected="true" data-setup-path="guided">Guided setup</button>
             <button id="path-terminal" type="button" role="tab" aria-controls="terminal-panel" aria-selected="false" data-setup-path="terminal">Terminal setup</button>
@@ -268,7 +269,7 @@
           </div>
           <div id="terminal-panel" class="path-panel" role="tabpanel" aria-labelledby="path-terminal" hidden>
             <h4>Run the equivalent commands yourself</h4>
-            <pre><code>git clone https://github.com/viksin0/athena-starter.git
+            <pre><code>git clone https://github.com/viksin_microsoft/athena-starter.git
 cd athena-starter
 npm ci
 code .</code></pre>
@@ -326,8 +327,8 @@ code .</code></pre>
 
   <footer>
     <div class="wrap">
-      Athena is an internal design-tooling preview (v0.2.2). Not published to the VS Code Marketplace.<br/>
-      Source: <a href="https://github.com/viksin0/athena-starter">github.com/viksin0/athena-starter</a>
+      Athena is an internal Microsoft design-tooling preview. Not published to the VS Code Marketplace.<br/>
+      <a href="https://github.com/viksin0/get-athena/issues/new?template=access-request.yml">Request access</a> · <a href="https://github.com/viksin_microsoft/get-athena">Approved-user repository</a>
     </div>
   </footer>
   <script>

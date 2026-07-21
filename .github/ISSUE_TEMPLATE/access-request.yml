@@ -1,0 +1,37 @@
+name: Athena access request
+description: Request read access to the private Athena distribution and starter repositories.
+title: "[Access request] "
+labels:
+  - access-request
+assignees:
+  - viksin0
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for Athena repository access. This issue is public, so do not include email addresses, customer information, credentials, or other confidential data.
+  - type: input
+    id: github-username
+    attributes:
+      label: Microsoft EMU GitHub username
+      description: Enter the GitHub username you use with Microsoft EMU, not a personal GitHub account.
+      placeholder: your-managed-github-username
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Intended use
+      description: Briefly describe your non-confidential reason for using Athena.
+      placeholder: I plan to use Athena for...
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: I am requesting access with my Microsoft-managed GitHub identity.
+          required: true
+        - label: I will not redistribute repository content or release artifacts outside Microsoft.
+          required: true
