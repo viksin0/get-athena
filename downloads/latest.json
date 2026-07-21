@@ -4,8 +4,8 @@
   "file": "downloads/athena-0.2.0.vsix",
   "provenance": "downloads/athena-0.2.0.vsix.provenance.json",
   "bytes": 3452813,
-  "sha256": "8970fb74154c80eb0515c3a4407905636c8eb26337335d0508b8fe7de814c9d4",
-  "sourceCommit": "322036a75081c5d5b30996845922982a2599fc7c",
-  "sourceDirty": true,
-  "generatedAt": "2026-07-21T05:23:07.060Z"
+  "sha256": "9e1b5902fadb090f5fdd2ca54bdbf0b4b5c104438ef3019ac804cc8d1300350d",
+  "sourceCommit": "e45597c678a677d3e1451150d6bc2fb83c1349b7",
+  "sourceDirty": false,
+  "generatedAt": "2026-07-21T06:53:40.827Z"
 }
