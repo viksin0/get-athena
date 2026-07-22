@@ -1,9 +1,9 @@
 # Get Athena
 
-This public guide explains how approved Microsoft employees install the private **Athena** VS Code extension and starter workspace. Athena source, release artifacts, and workspace content remain in Microsoft EMU repositories.
+This public repository hosts the **Athena** VS Code extension download and install guide. The Athena starter workspace remains in a private Microsoft EMU repository.
 
 - **`index.html`** — the hosted landing page (download button + step-by-step install guide).
-- **Private release** — [download Athena 0.2.3](https://github.com/viksin_microsoft/get-athena/releases/download/v0.2.3/athena-0.2.3.vsix) after signing into Microsoft EMU.
+- **`downloads/athena-0.2.4.vsix`** — the current packaged extension.
 - **`README.md`** — this guide (also renders on GitHub).
 
 ## Hosting on GitHub Pages
@@ -12,9 +12,9 @@ Pages is enabled on this repo, serving from the `main` branch root:
 
 `https://viksin0.github.io/get-athena/`
 
-Anyone can read the install instructions. Approved Microsoft EMU identities can download the current VSIX and clone the starter workspace.
+Anyone can read the install instructions and download the current VSIX. Approved Microsoft EMU identities can clone the starter workspace.
 
-> **Access:** sign into GitHub with the Microsoft EMU identity that has access to `viksin_microsoft/get-athena` and `viksin_microsoft/athena-starter`. GitHub shows 404 until access and SSO authentication are complete.
+> **Starter access:** sign into GitHub with the Microsoft EMU identity that has access to `viksin_microsoft/athena-starter`. GitHub shows 404 until access and SSO authentication are complete.
 
 ---
 
@@ -38,15 +38,13 @@ So "download and run" requires three things together: **the VSIX**, **the worksp
 
 ## Step-by-step
 
-1. **Sign into Microsoft EMU** — confirm you can open the [private Athena distribution repository](https://github.com/viksin_microsoft/get-athena).
+1. **Download Athena 0.2.4** — [download the VSIX directly](downloads/athena-0.2.4.vsix), then install it:
+  - UI: Extensions view → `···` → **Install from VSIX…**, or
+  - Terminal: `code --install-extension athena-0.2.4.vsix`
 
-2. **Download Athena 0.2.3** — [download the VSIX directly](https://github.com/viksin_microsoft/get-athena/releases/download/v0.2.3/athena-0.2.3.vsix), then install it:
-   - UI: Extensions view → `···` → **Install from VSIX…**, or
-  - Terminal: `code --install-extension athena-0.2.3.vsix`
+2. **Reload the window** — Command Palette → *Developer: Reload Window*. The Athena icon appears in the Activity Bar; the bridge starts on `localhost:7878`.
 
-3. **Reload the window** — Command Palette → *Developer: Reload Window*. The Athena icon appears in the Activity Bar; the bridge starts on `localhost:7878`.
-
-4. **Set up the private starter workspace** using exactly one setup path:
+3. **Set up the private starter workspace** using exactly one setup path:
    - **Guided (recommended):** on the hosted page choose **Guided setup** → **Continue setup in VS Code**, or run **Athena: Set Up or Update Workspace**. Select a parent folder when prompted. Athena creates `athena-starter/`, clones the repo, runs `npm ci`, and opens it.
    - **Terminal:** run the equivalent commands yourself:
      ```sh
@@ -56,9 +54,9 @@ So "download and run" requires three things together: **the VSIX**, **the worksp
      code .
      ```
 
-5. **Open Athena** — click the Athena Activity Bar icon → **Open in VS Code Panel** (or **Open in Browser**). The **Get Started** page loads automatically on first run.
+4. **Open Athena** — click the Athena Activity Bar icon → **Open in VS Code Panel** (or **Open in Browser**). The **Get Started** page loads automatically on first run.
 
-6. **Switch Copilot Chat to Agent Mode** — in Copilot Chat, change the mode picker from *Ask* to *Agent*. (Most common mistake: stages do nothing in *Ask* mode.)
+5. **Switch Copilot Chat to Agent Mode** — in Copilot Chat, change the mode picker from *Ask* to *Agent*. (Most common mistake: stages do nothing in *Ask* mode.)
 
 Do not run both workspace paths. The extension reports the real local state:
 
