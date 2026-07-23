@@ -3,7 +3,7 @@
 This public repository hosts the **Athena** VS Code extension download and install guide. The Athena starter workspace remains in a private Microsoft EMU repository.
 
 - **`index.html`** — the hosted landing page (download button + step-by-step install guide).
-- **`downloads/athena-0.2.4.vsix`** — the current packaged extension.
+- **`downloads/athena-0.2.5.vsix`** — the current packaged extension.
 - **`README.md`** — this guide (also renders on GitHub).
 
 ## Hosting on GitHub Pages
@@ -38,9 +38,9 @@ So "download and run" requires three things together: **the VSIX**, **the worksp
 
 ## Step-by-step
 
-1. **Download Athena 0.2.4** — [download the VSIX directly](downloads/athena-0.2.4.vsix), then install it:
+1. **Download Athena 0.2.5** — [download the VSIX directly](downloads/athena-0.2.5.vsix), then install it:
   - UI: Extensions view → `···` → **Install from VSIX…**, or
-  - Terminal: `code --install-extension athena-0.2.4.vsix`
+  - Terminal: `code --install-extension athena-0.2.5.vsix`
 
 2. **Reload the window** — Command Palette → *Developer: Reload Window*. The Athena icon appears in the Activity Bar; the bridge starts on `localhost:7878`.
 
