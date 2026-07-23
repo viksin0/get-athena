@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "version": "0.2.6",
-  "file": "downloads/athena-0.2.6.vsix",
-  "provenance": "downloads/athena-0.2.6.vsix.provenance.json",
-  "bytes": 3469325,
-  "sha256": "e6f0f6d9a915a9705e985c7630662a90ac712e279ea79a3bd985f533444c7c8e",
-  "sourceCommit": "50821f7699bcb4076659d2518cc7a1b678968911",
+  "version": "0.2.7",
+  "file": "downloads/athena-0.2.7.vsix",
+  "provenance": "downloads/athena-0.2.7.vsix.provenance.json",
+  "bytes": 3472134,
+  "sha256": "b6a3338dee78959bbe369137873d24b1fb587c3bb38d72ee3be41e5e9b69eab6",
+  "sourceCommit": "c055ed4a3fcf171f39aff7ae78cea98d7280d4b7",
   "sourceDirty": false,
-  "generatedAt": "2026-07-23T07:39:29.700Z"
+  "generatedAt": "2026-07-23T15:37:47.185Z"
 }
